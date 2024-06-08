@@ -1,37 +1,35 @@
-## Purpose
+﻿## Purpose
+目的
 
-<!-- Describe the intention of the changes being proposed. What problem does it solve or functionality does it add? -->
+<!-- 描述所提議更改的意圖。它解決了什麼問題或增加了什麼功能？ -->
 
+## 這會引入重大變更嗎？
 
-## Does this introduce a breaking change?
-
-When developers merge from main and run the server, azd up, or azd deploy, will this produce an error?
-If you're not sure, try it out on an old environment.
-
-```
-[ ] Yes
-[ ] No
-```
-
-## Does this require changes to learn.microsoft.com docs?
-
-This repository is referenced by (https://azure.microsoft.com/products/phi-3)
-which includes deployment, settings and usage instructions.
+當開發者從 main 合併並執行伺服器、azd up 或 azd deploy 時，這會產生錯誤嗎？
+如果你不確定，請在舊環境中嘗試一下。
 
 ```
-[ ] Yes
-[ ] No
+[ ] 是
+[ ] 否
 ```
 
-## Type of change
+## 這是否需要更改 learn.microsoft.com 文件？
+
+此儲存庫參考了 (https://azure.microsoft.com/products/phi-3)，其中包括部署、設定和使用說明。
+
+```
+[ ] 是
+[ ] 否
+```
+
+## 變更類型
 
 ```
 [ ] Bugfix
-[ ] Feature
-[ ] Code style update (formatting, local variables)
-[ ] Refactoring (no functional changes, no api changes)
-[ ] Documentation content changes
-[ ] Other... Please describe:
+[ ] 新功能
+[ ] 程式碼風格更新（格式化，本地變數）
+[ ] 重構（無功能性變更，無 api 變更）
+[ ] 文件內容變更
+[ ] 其他... 請描述：
 ```
-
 

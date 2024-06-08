@@ -1,10 +1,8 @@
-# **Prepare your industry data**
+﻿# **準備你的行業資料**
 
-We hope to inject Phi-3-mini into [TruthfulQA’s data](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv) . The first step is to import TruthfulQA’s data. 
+我們希望將 Phi-3-mini 注入 [TruthfulQA 的資料](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv) 。第一步是匯入 TruthfulQA 的資料。
 
-
-### **1. Load  data into csv and save it to json**
-
+### **1. 將資料載入 csv 並儲存為 json**
 
 ```python
 
@@ -31,18 +29,13 @@ with open('./output/TruthfulQA.json', 'r') as file:
         print(str(i))
         i+=1
 
-
 ```
 
-### **2. Upload data to Azure ML datastores**
+### **2. 上傳資料到 Azure ML 資料存放區**
 
 ![amldata](../../imgs/06/e2e/azureml_data.png)
 
+### **恭喜！**
 
+您的資料已成功載入。接下來，您需要通過 Microsoft Olive [E2E_LoRA_Config_With_Olive.md](./E2E_LoRA_Config_With_Olive.md) 來配置您的資料和相關算法。
 
-
-### **Congratulations!**  
-
-Your data has been successfully loaded.  Next, you need to configure your data and related algorithms through Microsoft Olive [E2E_LoRA_Config_With_Olive.md](./E2E_LoRA_Config_With_Olive.md)
-
-   

@@ -1,36 +1,45 @@
-<!--
-IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION
+﻿<!--
+如果未通過以下模板提供足夠的資訊，問題可能會在未經進一步考慮或調查的情況下被關閉
 -->
-> Please provide us with the following information:
+
+> 請提供我們以下的資訊：
 > ---------------------------------------------------------------
 
-### This issue is for a: (mark with an `x`)
+### 此問題是針對:（用 `x` 標記）
+
 ```
-- [ ] bug report -> please search issues before submitting
-- [ ] feature request
-- [ ] documentation issue or request
-- [ ] regression (a behavior that used to work and stopped in a new release)
+- [ ] 錯誤報告 -> 提交前請先搜尋問題
+- [ ] 功能請求
+- [ ] 文件問題或請求
+- [ ] 回歸（以前可行但在新版本中停止的行為）
 ```
 
-### Minimal steps to reproduce
+### 最小重現步驟
+
 >
 
-### Any log messages given by the failure
+### 任意日誌訊息由失敗給出
+
 >
 
-### Expected/desired behavior
+### 預期/期望的行為
+
 >
 
-### OS and Version?
-> Windows 7, 8 or 10. Linux (which distribution). macOS (Yosemite? El Capitan? Sierra?)
+### OS 和版本？
 
-### azd version?
-> run `azd version` and copy paste here.
+> Windows 7、8 或 10。Linux（哪個發行版）。macOS（Yosemite？El Capitan？Sierra？）
 
-### Versions
+### azd 版本?
+
+> 執行 `azd version` 並在此處複製貼上。
+
+### 版本
+
 >
 
-### Mention any other details that might be useful
+### 提及任何其他可能有用的細節
 
 > ---------------------------------------------------------------
-> Thanks! We'll be in touch soon.
+> 謝謝！我們會儘快聯絡您。
+

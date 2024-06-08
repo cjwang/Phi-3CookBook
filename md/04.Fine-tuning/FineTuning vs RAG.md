@@ -1,20 +1,24 @@
-## Finetuning vs RAG
+﻿## Finetuning vs RAG
 
-## Retrieval Augmented Generation
+## 檢索增強生成
 
-RAG is data retrieval + text generation. The structured data and unstructured data of the enterprise are stored in the vector database. When searching for relevant content, the relevant summary and content are found to form a context, and the text completion capability of LLM/SLM is combined to generate content.
+RAG 是資料檢索 + 文字生成。企業的結構化資料和非結構化資料存儲在向量資料庫中。在搜尋相關內容時，會找到相關摘要和內容以形成上下文，並結合 LLM/SLM 的文字補全能力來生成內容。
 
 ## RAG Process
-![FinetuningvsRAG](../../imgs/04/00/rag.png)
 
-## Fine-tuning
-Fine-tuning is based on improvement of a certain model. It does not need to start with the model algorithm, but data needs to be continuously accumulated. If you want more precise terminology and language expression in industry applications, fine-tuning is your better choice. But if your data changes frequently, fine-tuning can become complicated.
+![微調 vs RAG](../../imgs/04/00/rag.png)
 
-## How to choose
-If our answer requires the introduction of external data, RAG is the best choice
+## 微調
 
-If you need to output stable and precise industry knowledge, fine-tuning will be a good choice. RAG prioritizes pulling relevant content but might not always nail the specialized nuances.
 
-Fine-tuning requires a high-quality data set, and if it is just a small range of data, it will not make much difference. RAG is more flexible
-Fine-tuning is a black box, a metaphysics, and it is difficult to understand the internal mechanism. But RAG can make it easier to find the source of the data, thereby effectively adjusting hallucinations or content errors and providing better transparency.
+微調是基於改進某個模型。它不需要從模型演算法開始，但需要不斷累積資料。如果您希望在行業應用中有更精確的術語和語言表達，微調是您的更好選擇。但如果您的資料經常變動，微調可能會變得複雜。
+
+## 如何選擇
+
+如果我們的答案需要引入外部資料，RAG 是最佳選擇
+
+如果你需要輸出穩定且精確的行業知識，微調將是一個不錯的選擇。RAG 優先拉取相關內容，但可能無法總是掌握專業的細微差別。
+
+Fine-tuning 需要高品質的資料集，如果只是小範圍的資料，效果不會有太大差別。RAG 更加靈活
+Fine-tuning 是一個黑箱，一種玄學，很難理解其內部機制。但 RAG 可以更容易找到資料來源，從而有效調整幻覺或內容錯誤，並提供更好的透明度。
 

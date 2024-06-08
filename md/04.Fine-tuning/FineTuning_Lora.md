@@ -1,94 +1,97 @@
-# **Fine-tuning Phi-3 with Lora**
+﻿# **使用 Lora 微調 Phi-3**
 
-Fine-tuning Microsoft’s Phi-3 Mini language model using [LoRA (Low-Rank Adaptation)](https://github.com/microsoft/LoRA?WT.mc_id=aiml-138114-kinfeylo) on a custom chat instruction dataset. 
+微調 Microsoft 的 Phi-3 Mini 語言模型，使用 [LoRA (Low-Rank Adaptation)](https://github.com/microsoft/LoRA?WT.mc_id=aiml-138114-kinfeylo) 在自訂聊天指令資料集上。
 
-LORA will help improve conversational understanding and response generation. 
+LORA 將有助於改善對話理解和回應生成。
 
-## Step-by-step guide on how to fine-tune Phi-3 Mini:
+## 如何微調 Phi-3 Mini 的逐步指南:
 
-**Imports and Setup** 
+**Imports 和 設定**
 
-Installing loralib
+安裝 loralib
 
 ```
 pip install loralib
-# Alternatively
+# 或者
 # pip install git+https://github.com/microsoft/LoRA
 
 ```
 
-Begin by importing necessary libraries such as datasets, transformers, peft, trl, and torch.
-Set up logging to track the training process.
+開始匯入必要的函式庫，例如 datasets、transformers、peft、trl 和 torch。
+設定日誌以追蹤訓練過程。
 
-You can choose to adapt some layers by replacing them with counterparts implemented in loralib. We only support nn.Linear, nn.Embedding, and nn.Conv2d for now. We also support a MergedLinear for cases where a single nn.Linear represents more than one layers, such as in some implementations of the attention qkv projection (see Additional Notes for more).
+你可以選擇通過用 loralib 中實現的對應部分替換一些層來進行調整。我們目前只支援 nn.Linear、nn.Embedding 和 nn.Conv2d。我們還支援 MergedLinear，用於單個 nn.Linear 代表多個層的情況，例如在一些注意力 qkv 投影的實現中（請參閱附加說明以獲取更多資訊）。
 
 ```
 # ===== Before =====
-# layer = nn.Linear(in_features, out_features)
+# layer = nn.Linear( in_features, out_features)
 ```
 
 ```
-# ===== After ======
+# ===== 之後 ======
 ```
 
 import loralib as lora
 
 ```
-# Add a pair of low-rank adaptation matrices with rank r=16
+# 添加一對低階適應矩陣，秩 r=16
 layer = lora.Linear(in_features, out_features, r=16)
 ```
 
-Before the training loop begins, mark only LoRA parameters as trainable.
+在 training 迴圈開始之前，僅將 LoRA 參數標記為可訓練。
 
 ```
 import loralib as lora
 model = BigModel()
-# This sets requires_grad to False for all parameters without the string "lora_" in their names
+# 這會將所有名稱中不包含字串 "lora_" 的參數的 requires_grad 設為 False
 lora.mark_only_lora_as_trainable(model)
-# Training loop
+# 訓練迴圈
 for batch in dataloader:
 ```
 
-When saving a checkpoint, generate a state_dict that only contains LoRA parameters.
+當儲存檢查點時，生成僅包含 LoRA 參數的 state_dict。
 
 ```
-# ===== Before =====
+# ===== 之前 =====
 # torch.save(model.state_dict(), checkpoint_path)
 ```
+
 ```
-# ===== After =====
+# ===== 之後 =====
 torch.save(lora.lora_state_dict(model), checkpoint_path)
 ```
 
-When loading a checkpoint using load_state_dict, be sure to set strict=False.
+當使用 load_state_dict 載入檢查點時，請確保設置 strict=False。
 
 ```
-# Load the pretrained checkpoint first
+# 先載入預訓練的檢查點
 model.load_state_dict(torch.load('ckpt_pretrained.pt'), strict=False)
-# Then load the LoRA checkpoint
+# 然後載入 LoRA 檢查點
 model.load_state_dict(torch.load('ckpt_lora.pt'), strict=False)
 ```
 
-Now training can proceed as usual.
+現在訓練可以照常進行。
 
-**Hyperparameters** 
+**超參數**
 
-Define two dictionaries: training_config and peft_config. training_config includes hyperparameters for training, such as learning rate, batch size, and logging settings.
+定義兩個字典：training_config 和 peft_config。training_config 包含訓練的超參數，例如學習率、批次大小和日誌設定。
 
-peft_config specifies LoRA-related parameters like rank, dropout, and task type.
+peft_config 指定了 LoRA 相關的參數，如 rank、dropout 和 task type。
 
-**Model and Tokenizer Loading** 
+**模型和 Tokenizer 載入**
 
-Specify the path to the pre-trained Phi-3 model (e.g., "microsoft/Phi-3-mini-4k-instruct"). Configure model settings, including cache usage, data type (bfloat16 for mixed precision), and attention implementation.
+指定預訓練 Phi-3 model 的路徑（例如："microsoft/Phi-3-mini-4k-instruct"）。設定 model 設定，包括快取使用、資料類型（混合精度使用 bfloat16）、以及注意力實作。
 
-**Training** 
+**訓練**
 
-Fine-tune the Phi-3 model using the custom chat instruction dataset. Utilize the LoRA settings from peft_config for efficient adaptation. Monitor training progress using the specified logging strategy.
-Evaluation and Saving: Evaluate the fine-tuned model.
-Save checkpoints during training for later use.
+微調 Phi-3 模型使用自訂聊天指令資料集。利用來自 peft_config 的 LoRA 設定進行高效適應。使用指定的日誌策略監控訓練進度。
+評估和保存：評估微調後的模型。
+在訓練期間保存檢查點以供日後使用。
 
-**Samples**
-- [Learn More with this sample notebook](../../code/04.Finetuning/Phi_3_Inference_Finetuning.ipynb)
-- [Example of Python FineTuning Sample](../../code/04.Finetuning/FineTrainingScript.py)
-- [Example of Hugging Face Hub Fine Tuning with LORA](../../code/04.Finetuning/Phi-3-finetune-lora-python.ipynb)
-- [Example of Hugging Face Hub Fine Tuning with QLORA](../../code/04.Finetuning/Phi-3-finetune-qlora-python.ipynb)
+**範例**
+
+- [了解更多這個範例筆記本](../../code/04.Finetuning/Phi_3_Inference_Finetuning.ipynb)
+- [Python 微調範例](../../code/04.Finetuning/FineTrainingScript.py)
+- [使用 LORA 進行 Hugging Face Hub 微調範例](../../code/04.Finetuning/Phi-3-finetune-lora-python.ipynb)
+- [使用 QLORA 進行 Hugging Face Hub 微調範例](../../code/04.Finetuning/Phi-3-finetune-qlora-python.ipynb)
+

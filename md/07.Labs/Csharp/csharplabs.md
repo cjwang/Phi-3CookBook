@@ -1,77 +1,85 @@
-## Welcome to the Phi-3 labs using C#. 
+﻿## 歡迎使用 C# 的 Phi-3 實驗室。
 
-There is a selection of labs that showcases how to integrate the powerful different versions of Phi-3 models in a .NET environment.
+有一系列的實驗室展示了如何在 .NET 環境中整合強大的不同版本的 Phi-3 模型。
 
-## Prerequisites
-Before running the sample, ensure you have the following installed:
+## 先決條件
 
-**.NET 8:** Make sure you have the [latest version of .NET](https://dotnet.microsoft.com/download/dotnet/8.0) installed on your machine.
+在 執行 範例 之前，請確保您已安裝以下內容：
 
-**(Optional) Visual Studio or Visual Studio Code:** You will need an IDE or code editor capable of running .NET projects. [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/) are recommended.
+**.NET 8:** 確保您的機器上已安裝[最新版本的 .NET](https://dotnet.microsoft.com/download/dotnet/8.0)。
 
-**Using git** clone locally one of the available Phi-3 versions from [Hugging Face](https://huggingface.co).
+**（選擇性）Visual Studio 或 Visual Studio Code：** 您將需要一個能夠執行 .NET 專案的 IDE 或程式碼編輯器。建議使用 [Visual Studio](https://visualstudio.microsoft.com/) 或 [Visual Studio Code](https://code.visualstudio.com/)。
 
-**Download the phi3-mini-4k-instruct-onnx model** to your local machine:
+**使用 git** 複製本地其中一個可用的 Phi-3 版本從 [Hugging Face](https://huggingface.co).
 
-### navigate to the folder to store the models
+**下載 phi3-mini-4k-instruct-onnx 模型** 到你的本機:
+
+### 移動到資料夾以儲存模型
+
 ```bash
-cd c:\phi3\models
+cd c:\phi3\模型
 ```
-### add support for lfs
+
+### 增加對 lfs 的支援
+
 ```bash
 git lfs install 
 ```
-### clone and download mini 4K instruct model
+
+### 複製和下載 mini 4K instruct 模型
+
 ```bash
 git clone https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx
 ```
 
-### clone and download vision 128K model
+### 複製和下載 vision 128K 模型
+
 ```
 git clone https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-cpu
 ```
-**Important:** The current demos are designed to use the ONNX versions of the model. The previous steps clone the following models. 
+
+**重要：** 目前的示範設計為使用 ONNX 版本的模型。之前的步驟會複製以下模型。
 
 ![OnnxDownload](../../../imgs/07/00/DownloadOnnx.png)
 
-## About the Labs
+## 關於實驗室
 
-The main solution have several sample Labs that demonstrates the capabilities of the Phi-3 models using C#.
+主要解決方案有幾個範例實驗室，展示了使用 C# 的 Phi-3 模型的功能。
 
-| Project | Description | Location |
+ Project | Description | Location |
 | ------------ | ----------- | -------- |
-| LabsPhi301    | This is a sample project that uses a local phi3 model to ask a question. The project load a local ONNX Phi-3 model using the `Microsoft.ML.OnnxRuntime` libraries. | .\src\LabsPhi301\ |
-| LabsPhi302    | This is a sample project that implement a Console chat using Semantic Kernel. | .\src\LabsPhi302\ |
-| LabsPhi303 | This is a sample project that uses a local phi3 vision model to analyze images.. The project load a local ONNX Phi-3 Vision model using the `Microsoft.ML.OnnxRuntime` libraries. | .\src\LabsPhi303\ |
-| LabsPhi304 | This is a sample project that uses a local phi3 vision model to analyze images.. The project load a local ONNX Phi-3 Vision model using the `Microsoft.ML.OnnxRuntime` libraries. The project also presents a menu with different options to interacti with the user. | .\src\LabsPhi304\ |
+| LabsPhi301    | 這是一個使用本地 phi3 模型來提問的範例專案。該專案使用 `Microsoft.ML.OnnxRuntime` 函式庫載入本地 ONNX Phi-3 模型。 | .\src\LabsPhi301\ |
+| LabsPhi302    | 這是一個使用 Semantic Kernel 實作的 Console 聊天範例專案。 | .\src\LabsPhi302\ |
+| LabsPhi303 | 這是一個使用本地 phi3 視覺模型來分析影像的範例專案。該專案使用 `Microsoft.ML.OnnxRuntime` 函式庫載入本地 ONNX Phi-3 視覺模型。 | .\src\LabsPhi303\ |
+| LabsPhi304 | 這是一個使用本地 phi3 視覺模型來分析影像的範例專案。該專案使用 `Microsoft.ML.OnnxRuntime` 函式庫載入本地 ONNX Phi-3 視覺模型。該專案還提供了一個菜單，具有不同的選項以與使用者互動。 | .\src\LabsPhi304\ 
 
+## 如何執行這些專案
 
-## How to Run the Projects
+要執行這些專案，請按照以下步驟：
 
-To run the projects, follow these steps:
-1. Clone the repository to your local machine.
+1. 複製這個儲存庫到你的本機。
 
-1. Open a terminal and navigate to the desired project. In example, let's run `LabsPhi301`.
+1. 打開終端機並導航到所需的專案。例如，讓我們執行 `LabsPhi301`。
     ```bash
     cd .\src\LabsPhi301\
     ```
 
-1. Run the project with the command
+1. 使用以下命令執行專案
     ```bash
     dotnet run
     ```
 
-1.  The sample project ask for a user input and replies using the local mode. 
+1. 這個範例專案會要求使用者輸入並使用本地模式回應。
 
-    The running demo is similar to this one:
+    執行中的示範類似於這個：
 
     ![Chat running demo](../../../imgs/07/00/SampleConsole.gif)
 
-    ***Note:** there is a typo in the 1st question, Phi-3 is cool enough to share the correct answer!*
+    ***注意：** 第一個問題有一個錯字，Phi-3 足夠酷炫，會分享正確答案！*
 
-1.  The project `LabsPhi304` ask for the user to select different options, and then process the request. In example, analyzing a local image.
+1. 這個專案 `LabsPhi304` 要求使用者選擇不同的選項，然後處理請求。例如，分析本地圖片。
 
-    The running demo is similar to this one:
+    執行中的示範類似於這個：
 
     ![Image Analysis running demo](../../../imgs/07/00/SampleVisionConsole.gif)
-    
+
